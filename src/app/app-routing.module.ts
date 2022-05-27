@@ -3,12 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { PaymentComponent } from './pages/payment/payment.component';
-import { RoutesPath } from './constants/routes';
+import * as R from './constants/routes-path';
 
 const routes: Routes = [
-  { path: RoutesPath.home, component: AppComponent },
-  { path: 'category', component: CategoryComponent },
-  { path: 'payment', component: PaymentComponent },
+  { path: R.Home, component: AppComponent },
+  { path: R.category, component: CategoryComponent },
+  { path: R.payment, component: PaymentComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
