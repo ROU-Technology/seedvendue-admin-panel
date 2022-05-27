@@ -11,9 +11,10 @@ import { AppService } from './app.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { PaymentComponent } from './pages/payment/payment.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, CategoryComponent, PaymentComponent],
+  declarations: [AppComponent, NavbarComponent, CategoryComponent, PaymentComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

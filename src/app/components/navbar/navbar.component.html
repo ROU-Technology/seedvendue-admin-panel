@@ -14,11 +14,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" routerLink="home"
-          >Home</a
+        <a class="nav-link active" aria-current="page" [routerLink]="R.Home" [routerLinkActive]="'active'">
+          Home</a
         >
-        <a class="nav-link" routerLink="ca">Category</a>
-        <a class="nav-link" href="#">Payment</a>
+        <a class="nav-link" [routerLink]="R.category" [routerLinkActive]="'active'">Category</a>
+        <a class="nav-link" [routerLink]="R.payment" [routerLinkActive]="'active'">Payment</a>
       </div>
     </div>
   </div>
