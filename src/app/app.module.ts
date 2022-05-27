@@ -6,16 +6,21 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
 import { AppService } from './app.service';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { CategoryComponent } from './pages/category/category.component';
+import { PaymentComponent } from './pages/payment/payment.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NavbarComponent, CategoryComponent, PaymentComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSliderModule,
     MatGridListModule,
+    MatCardModule,
   ],
   providers: [AppService],
   bootstrap: [AppComponent],

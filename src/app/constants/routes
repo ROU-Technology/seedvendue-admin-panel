@@ -1,0 +1,7 @@
+const RoutesPath = {
+  home: "home",
+  category: "category",
+  payment: "payment",
+};
+
+export { RoutesPath };
