@@ -12,8 +12,8 @@ import {
 const routes: Routes = [
   { path: R.Login, component: LoginComponent },
   { path: R.Home, component: HomeComponent, canActivate: [AuthGuard] },
-  { path: R.category, component: CategoryComponent },
-  { path: R.payment, component: PaymentComponent },
+  { path: R.category, component: CategoryComponent, canActivate: [AuthGuard] },
+  { path: R.payment, component: PaymentComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 

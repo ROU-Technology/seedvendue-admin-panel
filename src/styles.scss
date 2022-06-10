@@ -1,4 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.toast-error {
+  background-color: #f44336;
+  height: inherit;
+  color: antiquewhite;
+  text-align: center;
+  font-size: 25px;
+  font-weight: normal;
+  padding-top: 10px;
+}
+
+.toast-container {
+  height: 50px;
+  width: 100% !important;
+}
+
+.toast-bottom-right {
+  bottom: 0;
+  right: 0;
+}

@@ -110,5 +110,7 @@
       }
     }
   },
-  "defaultProject": "seedvendue-admin-panel"
+  "cli": {
+    "analytics": "c8a0e5a2-596b-4edc-9eec-4760a69d1972"
+  }
 }
