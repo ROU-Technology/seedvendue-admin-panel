@@ -12,9 +12,12 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+import { SubCategoryComponent } from './pages/sub-category/sub-category.component';
+import { UsersComponent } from './pages/users/users.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, CategoryComponent, PaymentComponent, HomeComponent],
+  declarations: [AppComponent, NavbarComponent, CategoryComponent, PaymentComponent, HomeComponent, LoginComponent, SubCategoryComponent, UsersComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
