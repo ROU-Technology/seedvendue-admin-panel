@@ -7,6 +7,10 @@ import {
   HomeComponent,
   PaymentComponent,
   CategoryComponent,
+  UsersComponent,
+  SubCategoryComponent,
+  WithdrawComponent,
+  PaymentHistoryComponent,
 } from './pages';
 
 const routes: Routes = [
@@ -14,6 +18,18 @@ const routes: Routes = [
   { path: R.Home, component: HomeComponent, canActivate: [AuthGuard] },
   { path: R.category, component: CategoryComponent, canActivate: [AuthGuard] },
   { path: R.payment, component: PaymentComponent, canActivate: [AuthGuard] },
+  { path: R.users, component: UsersComponent, canActivate: [AuthGuard] },
+  {
+    path: R.subCategory,
+    component: SubCategoryComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: R.withdraw, component: WithdrawComponent, canActivate: [AuthGuard] },
+  {
+    path: R.paymentHistory,
+    component: PaymentHistoryComponent,
+    canActivate: [AuthGuard],
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 

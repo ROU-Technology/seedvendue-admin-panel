@@ -1,0 +1,16 @@
+<div class="side_nav">
+  <div class="main" *ngFor="let navs of navigation">
+    <div
+      class="d-flex flex-row justify-content-between align-items-center main_head"
+    >
+      <p class="text-center text-capitalize">{{ navs.name }}</p>
+    </div>
+    <div
+      class="sub d-flex flex-column justify-content-center align-items-start"
+      [routerLinkActive]="'active div'"
+      *ngFor="let nav of navs.navigation"
+    >
+      <a [routerLink]="nav.url" [routerLinkActive]="'active'">{{ nav.name }}</a>
+    </div>
+  </div>
+</div>

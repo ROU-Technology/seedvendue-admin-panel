@@ -3,22 +3,26 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { AppService } from './app.service';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { CategoryComponent } from './pages/category/category.component';
-import { PaymentComponent } from './pages/payment/payment.component';
-import { HomeComponent } from './pages/home/home.component';
-import { SubCategoryComponent } from './pages/sub-category/sub-category.component';
-import { UsersComponent } from './pages/users/users.component';
-import { LoginComponent } from './pages';
+import {
+  CategoryComponent,
+  HomeComponent,
+  LoginComponent,
+  PaymentComponent,
+  SubCategoryComponent,
+  UsersComponent,
+} from './pages';
 import { AuthService } from './service';
+import { NavbarComponent, SideNavigationComponent } from './components';
+import { WithdrawComponent } from './pages/withdraw/withdraw.component';
+import { PaymentHistoryComponent } from './pages/payment-history/payment-history.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,9 @@ import { AuthService } from './service';
     SubCategoryComponent,
     UsersComponent,
     LoginComponent,
+    SideNavigationComponent,
+    WithdrawComponent,
+    PaymentHistoryComponent,
   ],
   imports: [
     BrowserModule,

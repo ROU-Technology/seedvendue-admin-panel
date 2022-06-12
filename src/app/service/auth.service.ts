@@ -8,8 +8,8 @@ import { uri } from '../constants/backend';
   providedIn: 'root',
 })
 export class AuthService {
-  token!: string;
-  user!: any;
+  token!: string | null;
+  user!: object | null;
 
   constructor(private http: HttpClient) {}
 
@@ -18,7 +18,7 @@ export class AuthService {
       .post<any>(`${uri}/auth/admin-signin`, { email, password })
       .pipe(
         tap((res) => {
-          console.log(res);
+          // console.log(res);
           this.saveToken(res.token);
           this.user = res.user;
         }),
@@ -48,6 +48,8 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    this.token = null;
+    this.user = null;
   }
 
   private handleError(error: HttpErrorResponse) {

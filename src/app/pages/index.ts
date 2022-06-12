@@ -4,6 +4,8 @@ import { PaymentComponent } from './payment/payment.component';
 import { LoginComponent } from './login/login.component';
 import { SubCategoryComponent } from './sub-category/sub-category.component';
 import { UsersComponent } from './users/users.component';
+import { WithdrawComponent } from './withdraw/withdraw.component';
+import { PaymentHistoryComponent } from './payment-history/payment-history.component';
 
 export {
   HomeComponent,
@@ -12,4 +14,6 @@ export {
   LoginComponent,
   SubCategoryComponent,
   UsersComponent,
+  WithdrawComponent,
+  PaymentHistoryComponent,
 };

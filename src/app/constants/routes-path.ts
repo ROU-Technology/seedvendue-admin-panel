@@ -6,3 +6,5 @@ export const payment = 'payment';
 export const users = 'users';
 export const subCategory = 'subCategory';
 export const product = 'product';
+export const withdraw = 'withdraw';
+export const paymentHistory = 'payment-history';

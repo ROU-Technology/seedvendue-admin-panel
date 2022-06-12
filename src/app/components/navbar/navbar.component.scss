@@ -1,7 +1,27 @@
 .nav {
-  background-color: #6da34d !important;
+  background-color: #ffffff !important;
+  box-shadow: 1px 0px 4px #979595;
 }
 
 .navbar-nav {
   margin-left: 50px !important;
+}
+
+.navbar-collapse {
+  justify-content: flex-end !important;
+  width: 100% !important;
+}
+
+.logout {
+  margin-right: 50px !important;
+  width: 100px;
+  background-color: var(--primary-color);
+  border-radius: 15px;
+  color: #ffffff;
+  border: none;
+}
+
+.logo {
+  margin-left: 50px !important;
+  color: #4d4d4d;
 }

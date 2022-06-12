@@ -1,0 +1,38 @@
+.side_nav {
+  background-color: var(--white);
+  height: 100%;
+}
+
+.main_head {
+  background-color: var(--white);
+  height: 50px;
+}
+
+.main div p {
+  color: rgb(0, 115, 170);
+  font-size: 18px;
+  font-weight: 400;
+  width: 80px;
+}
+
+.sub {
+  padding-left: 30px;
+  margin-bottom: 20px;
+}
+
+.sub a {
+  color: rgb(37, 37, 37);
+  font-weight: 400;
+}
+
+.active {
+  background-color: var(--primary-color);
+  color: var(--white);
+  height: 40px;
+}
+
+.div {
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid rgb(0, 115, 170);
+}
