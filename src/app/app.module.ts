@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
+import { MaterialExampleModule } from '../material.module';
+import { MatNativeDateModule } from '@angular/material/core';
 import { AppService } from './app.service';
 import {
   CategoryComponent,
@@ -23,6 +22,7 @@ import { AuthService } from './service';
 import { NavbarComponent, SideNavigationComponent } from './components';
 import { WithdrawComponent } from './pages/withdraw/withdraw.component';
 import { PaymentHistoryComponent } from './pages/payment-history/payment-history.component';
+import { CategoryCompComponent } from './components/category-comp/category-comp.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +37,7 @@ import { PaymentHistoryComponent } from './pages/payment-history/payment-history
     SideNavigationComponent,
     WithdrawComponent,
     PaymentHistoryComponent,
+    CategoryCompComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,9 +45,9 @@ import { PaymentHistoryComponent } from './pages/payment-history/payment-history
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MatSliderModule,
-    MatGridListModule,
-    MatCardModule,
+    FormsModule,
+    MaterialExampleModule,
+    MatNativeDateModule,
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: 'toast-bottom-right',

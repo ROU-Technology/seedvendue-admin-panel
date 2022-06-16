@@ -1,22 +1,73 @@
-.example-card {
-  max-width: 400px;
+// .example-card {
+//   max-width: 400px;
+// }
+
+// .example-header-image {
+//   background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+//   background-size: cover;
+// }
+
+// .mat-card {
+//   max-width: 200px;
+// }
+
+// .btn-go {
+//   background-color: #ffffff;
+//   width: 100px;
+// }
+
+// .btn-go a {
+//   color: #000000;
+//   text-decoration: none;
+// }
+
+// .demo-table {
+//   width: 90%;
+//   min-height: 200px;
+//   // max-height: 400px;
+// }
+
+.category-title h1 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #4d4d4d;
+  margin-bottom: -30px;
 }
 
-.example-header-image {
-  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
-  background-size: cover;
+.table {
+  width: 90%;
 }
 
-.mat-card {
-  max-width: 200px;
+table {
+  width: 100%;
 }
 
-.btn-go {
-  background-color: #ffffff;
-  width: 100px;
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+  color: #4d4d4d !important;
+  height: 40px;
+  margin-bottom: 20px;
+  margin-top: 0;
+  background: none;
 }
 
-.btn-go a {
-  color: #000000;
-  text-decoration: none;
+.mat-form-field-wrapper {
+  height: 40px;
+}
+
+.mat-input-element {
+  font-size: 14px;
+  color: #4d4d4d !important;
+}
+
+td,
+th {
+  width: 25%;
+}
+
+.label {
+  font-size: 14px;
+  color: #4d4d4d;
+  font-weight: 500;
 }
