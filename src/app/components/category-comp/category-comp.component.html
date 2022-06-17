@@ -2,7 +2,7 @@
   class="category d-flex flex-column align-items-center justify-content-center gap-3 mt-5 w-100"
 >
   <div class="category-title align-self-start ms-4">
-    <h1>Categories</h1>
+    <h1>{{ tableTitle }}</h1>
   </div>
   <div class="table">
     <mat-form-field appearance="standard" class="ts">
@@ -17,7 +17,7 @@
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" matSort class="demo-table">
         <ng-container
-          *ngFor="let column of columns"
+          *ngFor="let column of tableColumns"
           [matColumnDef]="column.columnDef"
         >
           <th mat-header-cell *matHeaderCellDef>

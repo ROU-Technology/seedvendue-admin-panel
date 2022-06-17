@@ -23,40 +23,22 @@ export interface PeriodicElement {
 })
 export class CategoryCompComponent implements OnInit, AfterViewInit {
   @Input() Data!: PeriodicElement[];
+  @Input() tableTitle!: string;
+  @Input() tableColumns!: any[];
 
-  constructor() {
-    this.dataSource = new MatTableDataSource(this.Data);
-  }
+  constructor() {}
 
-  columns = [
-    {
-      columnDef: 'position',
-      header: 'No.',
-      cell: (element: PeriodicElement) => `${element.position}`,
-    },
-    {
-      columnDef: 'name',
-      header: 'Name',
-      cell: (element: PeriodicElement) => `${element.name}`,
-    },
-    {
-      columnDef: 'weight',
-      header: 'Weight',
-      cell: (element: PeriodicElement) => `${element.weight}`,
-    },
-    {
-      columnDef: 'symbol',
-      header: 'Symbol',
-      cell: (element: PeriodicElement) => `${element.symbol}`,
-    },
-  ];
-  dataSource: MatTableDataSource<PeriodicElement>;
-  displayedColumns = this.columns.map((c) => c.columnDef);
+  dataSource!: MatTableDataSource<PeriodicElement>;
+  displayedColumns!: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // console.log(this.Data);
+    this.dataSource = new MatTableDataSource(this.Data);
+    this.displayedColumns = this.tableColumns.map((c) => c.columnDef);
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
