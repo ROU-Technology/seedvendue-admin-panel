@@ -22,12 +22,12 @@ export class CategoryService {
     const options = {
       headers: new HttpHeaders({ Authorization: `Bearer ${this.authToken}` }),
     };
-    console.log(this.authToken);
+    // console.log(this.authToken);
     return this.http
       .get<ReceivedCategory[]>(`${uri}/admin/category`, options)
       .pipe(
         tap((res) => {
-          console.log(res);
+          // console.log(res);
         }),
         catchError((err) => {
           this.handleError;

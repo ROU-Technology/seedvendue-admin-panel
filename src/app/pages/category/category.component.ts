@@ -6,9 +6,10 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 
-import { CategoryService } from 'src/app/service';
+import { AuthService, CategoryService } from 'src/app/service';
 import { ReceivedCategory } from 'src/app/shared/category.interface';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category',
@@ -21,7 +22,9 @@ export class CategoryComponent implements OnInit, AfterViewInit {
 
   constructor(
     public categoryService: CategoryService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private auth: AuthService
   ) {}
 
   observer = {
@@ -30,7 +33,12 @@ export class CategoryComponent implements OnInit, AfterViewInit {
       this.isEmpty = false;
     },
     error: (err: any) => {
-      console.log(err);
+      // console.log(err);
+      if (err.statusCode === 401) {
+        alert('Unauthorized, please login again');
+        this.auth.logout();
+        this.router.navigate(['/login']);
+      }
     },
     complete: () => console.log('Observer got a complete notification'),
   };
@@ -55,10 +63,11 @@ export class CategoryComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe((result) => {
       // console.log('The dialog was closed');
       console.log(result);
+      this.categories = this.categories.filter((arr) => {
+        return arr.id !== result;
+      });
     });
   }
-
-  openDialog(): void {}
 
   editCategory(categoryId: string) {
     const _data = this.categories.filter((category) => {
@@ -66,8 +75,30 @@ export class CategoryComponent implements OnInit, AfterViewInit {
     });
     // console.log(_data);
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '250px',
+      width: '350px',
       data: { data: _data[0], type: 'edit', level: 'category' },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      // console.log('The dialog was closed');
+      console.log(result);
+      const newData = this.categories.map((arr) => {
+        if (arr.id === result.id) {
+          arr.name = result.name;
+          arr.description = result.description;
+        }
+
+        return arr;
+      });
+
+      console.log(newData);
+    });
+  }
+
+  createCategory() {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '350px',
+      data: { data: {}, type: 'create', level: 'category' },
     });
 
     dialogRef.afterClosed().subscribe((result) => {

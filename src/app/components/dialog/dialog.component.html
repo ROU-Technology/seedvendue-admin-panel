@@ -1,7 +1,7 @@
 <div *ngIf="data.type === 'delete'">
   <h1 mat-dialog-title>{{ data.data.name }}</h1>
   <div mat-dialog-content>
-    <p>Do you want to delete the category</p>
+    <p>Do you want to delete this {{ data.level | uppercase }}</p>
   </div>
   <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Cancel</button>
@@ -17,6 +17,60 @@
   <div mat-dialog-content>
     <p>You are about to edit this category</p>
     <form [formGroup]="categoryForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          formControlName="name"
+          placeholder="Enter name"
+          [value]="data.data.name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          class="form-control"
+          id="description"
+          formControlName="description"
+          placeholder="Enter description"
+          [value]="data.data.description"
+        ></textarea>
+      </div>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button
+      mat-button
+      [mat-dialog-close]="editCategory()"
+      type="submit"
+      [disabled]="!categoryForm.valid"
+      cdkFocusInitial
+    >
+      Yes
+    </button>
+  </div>
+</div>
+
+<div *ngIf="data.type === 'create'">
+  <h1 mat-dialog-title>{{ data.level | uppercase }}</h1>
+  <div mat-dialog-content>
+    <p>You are about to create a new {{ data.level | uppercase }}</p>
+    <form [formGroup]="CreateCategoryForm">
+      <div class="form-group" *ngIf="data.level === 'subCategory'">
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          formControlName="categoryId"
+        >
+          <option selected>Select Category</option>
+          <option [ngValue]="cat" *ngFor="let cat of data.data.categories">
+            {{ cat.name }}
+          </option>
+        </select>
+      </div>
       <div class="form-group">
         <label for="name">Name</label>
         <input
@@ -43,9 +97,9 @@
     <button
       *ngIf="data.level === 'category'"
       mat-button
-      [mat-dialog-close]="editCategory()"
+      [mat-dialog-close]="CreateCategory('category')"
       type="submit"
-      [disabled]="!categoryForm.valid"
+      [disabled]="!CreateCategoryForm.valid"
       cdkFocusInitial
     >
       Yes
@@ -53,13 +107,12 @@
     <button
       *ngIf="data.level === 'subCategory'"
       mat-button
-      [mat-dialog-close]="editSubCategory()"
+      [mat-dialog-close]="CreateCategory('subCategory')"
       type="submit"
-      [disabled]="!categoryForm.valid"
+      [disabled]="!CreateCategoryForm.valid"
       cdkFocusInitial
     >
       Yes
     </button>
-    <ng-content></ng-content>
   </div>
 </div>

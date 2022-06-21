@@ -12,17 +12,20 @@ export class DialogComponent {
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ReceivedCategory | any
-  ) {}
+  ) {
+    // console.log(data);
+  }
 
   categoryForm = new FormGroup({
-    name: new FormControl<string>('', [Validators.required]),
+    name: new FormControl<string>(this.data.data.name, [Validators.required]),
     id: new FormControl<string>('', [Validators.nullValidator]),
-    description: new FormControl<string>('', [Validators.nullValidator]),
+    description: new FormControl<string>(this.data.data.description, [
+      Validators.nullValidator,
+    ]),
   });
 
-  subCategoryForm = new FormGroup({
+  CreateCategoryForm = new FormGroup({
     name: new FormControl<string>('', [Validators.required]),
-    id: new FormControl<string>('', [Validators.nullValidator]),
     description: new FormControl<string>('', [Validators.nullValidator]),
     categoryId: new FormControl<string>('', [Validators.nullValidator]),
   });
@@ -38,11 +41,11 @@ export class DialogComponent {
     return this.categoryForm.value;
   }
 
-  editSubCategory() {
-    this.subCategoryForm.patchValue({
-      id: this.data.data.id,
-      categoryId: this.data.data.categoryId,
-    });
-    return this.subCategoryForm.value;
+  CreateCategory(level: string) {
+    if (level === 'category')
+      this.CreateCategoryForm.patchValue({
+        categoryId: '',
+      });
+    return this.CreateCategoryForm.value;
   }
 }
