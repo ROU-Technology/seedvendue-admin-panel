@@ -1,16 +1,23 @@
-<div
-  class="cont d-flex flex-column align-items-center justify-content-center gap-3 mt-5 w-100"
->
-  <app-category-comp
-    tableTitle="Category"
-    [tableColumns]="columns"
-    [Data]="ELEMENT_DATA"
-    class="w-100"
-  ></app-category-comp>
-  <app-category-comp
-    tableTitle="Sub Category"
-    [tableColumns]="columns"
-    [Data]="ELEMENT_DATA"
-    class="w-100"
-  ></app-category-comp>
+<div class="grid grid-cols-12">
+  <div class="side_nav col-span-2 min-vh-100">
+    <app-side-navigation></app-side-navigation>
+  </div>
+  <div class="col-span-10">
+    <div
+      class="cont d-flex flex-column align-items-center justify-content-center gap-3 mt-5 w-100"
+    >
+      <app-category-comp
+        tableTitle="Category"
+        [tableColumns]="columns"
+        [Data]="ELEMENT_DATA"
+        class="w-100"
+      ></app-category-comp>
+      <app-category-comp
+        tableTitle="Sub Category"
+        [tableColumns]="columns"
+        [Data]="ELEMENT_DATA"
+        class="w-100"
+      ></app-category-comp>
+    </div>
+  </div>
 </div>

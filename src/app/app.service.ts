@@ -1,9 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
+import { AuthService } from './service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class AppService {
+export class AppService implements OnDestroy {
+  constructor(private auth: AuthService) {}
 
-  constructor() { }
+  ngOnDestroy(): void {
+    this.auth.logout();
+  }
 }

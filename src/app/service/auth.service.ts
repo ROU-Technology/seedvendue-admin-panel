@@ -9,6 +9,7 @@ import { uri } from '../constants/backend';
 })
 export class AuthService {
   token!: string | null;
+  auth: boolean = false;
   user!: object | null;
 
   constructor(private http: HttpClient) {}
@@ -21,6 +22,7 @@ export class AuthService {
           // console.log(res);
           this.saveToken(res.token);
           this.user = res.user;
+          this.auth = true;
         }),
 
         catchError((err) => {
@@ -50,6 +52,7 @@ export class AuthService {
     localStorage.removeItem('token');
     this.token = null;
     this.user = null;
+    this.auth = false;
   }
 
   private handleError(error: HttpErrorResponse) {

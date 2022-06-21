@@ -8,11 +8,7 @@ import {
 
 import { CategoryService } from 'src/app/service';
 import { ReceivedCategory } from 'src/app/shared/category.interface';
-
-interface DialogData {
-  name: string;
-  animal: string;
-}
+import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 
 @Component({
   selector: 'app-category',
@@ -20,7 +16,7 @@ interface DialogData {
   styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent implements OnInit, AfterViewInit {
-  categories: ReceivedCategory[] = [];
+  categories!: ReceivedCategory[];
   isEmpty: boolean = true;
 
   constructor(
@@ -30,7 +26,7 @@ export class CategoryComponent implements OnInit, AfterViewInit {
 
   observer = {
     next: (res: any) => {
-      this.categories.push(res);
+      this.categories = res;
       this.isEmpty = false;
     },
     error: (err: any) => {
@@ -42,86 +38,41 @@ export class CategoryComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    new Observable((observer) => {
-      setTimeout(() => {
-        observer.next({
-          name: 'Category 1',
-          description: 'Description 1',
-          status: true,
-          cover: '../../../assets/image/automobile.svg',
-          id: 'werwer',
-          createdAt: '',
-          updatedAt: '',
-          SubCategory: [],
-        });
-      }, 2000);
-      setTimeout(() => {
-        observer.next({
-          name: 'Category 2',
-          description: 'Description 2',
-          status: true,
-          cover: '../../../assets/image/automobile.svg',
-          id: 'werwer',
-          createdAt: '',
-          updatedAt: '',
-          SubCategory: [],
-        });
-      }, 4000);
-      setTimeout(() => {
-        observer.next({
-          name: 'Category 3',
-          description: 'Description 3',
-          status: true,
-          cover: '../../../assets/image/automobile.svg',
-          id: 'werwer',
-          createdAt: '',
-          updatedAt: '',
-          SubCategory: [],
-        });
-      }, 6000);
-    }).subscribe(this.observer);
+    this.categoryService.getCategories().subscribe(this.observer);
   }
 
   toggleStatus(categoryId: string) {
+    // console.log(categoryId);
+    const _data = this.categories.filter((category) => {
+      return category.id === categoryId;
+    });
+    // console.log(_data);
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '250px',
-      data: { name: 'rrr', animal: 'rrr' },
+      data: { data: _data[0], type: 'delete' },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
       console.log(result);
     });
   }
 
   openDialog(): void {}
 
-  editCategory(id: string) {}
-}
+  editCategory(categoryId: string) {
+    const _data = this.categories.filter((category) => {
+      return category.id === categoryId;
+    });
+    // console.log(_data);
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: { data: _data[0], type: 'edit', level: 'category' },
+    });
 
-@Component({
-  selector: 'app-dialog',
-  template: `
-    <h1 mat-dialog-title>Hi {{ data.name }}</h1>
-    <div mat-dialog-content>
-      <p>Do you want to disable the category</p>
-    </div>
-    <div mat-dialog-actions>
-      <button mat-button (click)="onNoClick()">Cancel</button>
-      <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>
-        Yes
-      </button>
-      <ng-content></ng-content>
-    </div>
-  `,
-})
-export class DialogComponent {
-  constructor(
-    public dialogRef: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData
-  ) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
+    dialogRef.afterClosed().subscribe((result) => {
+      // console.log('The dialog was closed');
+      console.log(result);
+    });
   }
 }

@@ -23,7 +23,7 @@ import { NavbarComponent, SideNavigationComponent } from './components';
 import { WithdrawComponent } from './pages/withdraw/withdraw.component';
 import { PaymentHistoryComponent } from './pages/payment-history/payment-history.component';
 import { CategoryCompComponent } from './components/category-comp/category-comp.component';
-import { DialogComponent } from './pages/category/category.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
