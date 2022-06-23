@@ -2,22 +2,48 @@
   <div class="side_nav col-span-2 min-vh-100">
     <app-side-navigation></app-side-navigation>
   </div>
-  <div class="col-span-10">
-    <div
-      class="cont d-flex flex-column align-items-center justify-content-center gap-3 mt-5 w-100"
-    >
-      <app-category-comp
-        tableTitle="Category"
-        [tableColumns]="columns"
-        [Data]="ELEMENT_DATA"
-        class="w-100"
-      ></app-category-comp>
-      <app-category-comp
-        tableTitle="Sub Category"
-        [tableColumns]="columns"
-        [Data]="ELEMENT_DATA"
-        class="w-100"
-      ></app-category-comp>
+  <div
+    class="col-span-10 flex flex-row justify-center items-center gap-10 flex-wrap"
+  >
+    <div class="flex flex-col gap-6">
+      <div
+        class="bg-white rounded-xl p-4 flex flex-col justify-between items-center w-52"
+      >
+        <p class="text-base font-bold">User</p>
+        <p>Number: <span class="ml-6">12</span></p>
+        <button class="bg-primary-app rounded px-4 h-8">
+          <a class="text-white">User</a>
+        </button>
+      </div>
+      <div
+        class="bg-white rounded-xl p-4 flex flex-col justify-between items-center w-52"
+      >
+        <p class="text-base font-bold">Category</p>
+        <p>Number: <span class="ml-6">12</span></p>
+        <button class="bg-primary-app rounded px-4 h-8">
+          <a class="text-white">Category</a>
+        </button>
+      </div>
+    </div>
+    <div class="flex flex-col gap-6">
+      <div
+        class="bg-white rounded-xl p-4 flex flex-col justify-between items-center w-52"
+      >
+        <p class="text-base font-bold">Sub Category</p>
+        <p>Number: <span class="ml-6">12</span></p>
+        <button class="bg-primary-app rounded px-4 h-8">
+          <a class="text-white">Sub Category</a>
+        </button>
+      </div>
+      <div
+        class="bg-white rounded-xl p-4 flex flex-col justify-between items-center w-52"
+      >
+        <p class="text-base font-bold">Shipment</p>
+        <p>Number: <span class="ml-6">12</span></p>
+        <button class="bg-primary-app rounded px-4 h-8">
+          <a class="text-white">Shipment</a>
+        </button>
+      </div>
     </div>
   </div>
 </div>

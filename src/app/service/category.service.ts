@@ -6,7 +6,10 @@ import {
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of, tap, throwError } from 'rxjs';
 import { uri } from '../constants/backend';
-import { ReceivedCategory } from '../shared/category.interface';
+import {
+  ReceivedCategory,
+  ReceivedSubCategory,
+} from '../shared/category.interface';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -25,6 +28,28 @@ export class CategoryService {
     // console.log(this.authToken);
     return this.http
       .get<ReceivedCategory[]>(`${uri}/admin/category`, options)
+      .pipe(
+        tap((res) => {
+          // console.log(res);
+        }),
+        catchError((err) => {
+          this.handleError;
+          return throwError(() => {
+            return err.error;
+          });
+        })
+      );
+  }
+
+  getSubCategories(): Observable<ReceivedSubCategory[]> {
+    // add authorization header with jwt token
+    this.authToken = this.authService.getToken();
+    const options = {
+      headers: new HttpHeaders({ Authorization: `Bearer ${this.authToken}` }),
+    };
+    // console.log(this.authToken);
+    return this.http
+      .get<ReceivedSubCategory[]>(`${uri}/product/subcategory/all`, options)
       .pipe(
         tap((res) => {
           // console.log(res);
