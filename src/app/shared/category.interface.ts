@@ -1,14 +1,12 @@
 export interface CreateCategory {
   name: string;
   description: string;
-  status: boolean;
   cover?: any;
 }
 
 export interface ReceivedCategory {
   name: string;
   description: string;
-  status: boolean;
   cover?: string;
   id: string;
   createdAt: string;
@@ -27,6 +25,7 @@ export interface ReceivedSubCategory {
   description: string;
   categoryId: string;
   id: string;
+  cover?: any;
   createdAt: string;
   updatedAt: string;
 }

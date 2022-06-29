@@ -1,8 +1,12 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap, catchError, throwError } from 'rxjs';
+import { tap, catchError, throwError, Observable } from 'rxjs';
 import { uri } from '../constants/backend';
-import { ReceivedCategory } from '../shared/category.interface';
+import { ReceivedUsers } from '../shared/user.interface';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -13,30 +17,56 @@ export class UsersService {
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  getAllUsers() {
-
+  getAllUsers(
+    query: string,
+    cursorId?: string | boolean
+  ): Observable<ReceivedUsers[]> {
+    if (!cursorId) {
+      query = 'first';
+      cursorId = '';
+    }
     this.authToken = this.authService.getToken();
     const options = {
       headers: new HttpHeaders({ Authorization: `Bearer ${this.authToken}` }),
-    }
+    };
 
     return this.http
-    .get<ReceivedCategory[]>(`${uri}/admin/users`, options)
-    .pipe(
-      tap((res) => {
-        // console.log(res);
-      }),
-      catchError((err) => {
-        this.handleError;
-        return throwError(() => {
-          return err.error;
-        });
-      })
-    );
+      .get<ReceivedUsers[]>(
+        `${uri}/admin/users?query=${query}&cursorId=${cursorId}`,
+        options
+      )
+      .pipe(
+        tap((res) => {
+          // console.log(res);
+        }),
+        catchError((err) => {
+          this.handleError;
+          return throwError(() => {
+            return err.error;
+          });
+        })
+      );
   }
 
-  deleteUserById() {
+  deleteUserById(id: string): Observable<any> {
+    this.authToken = this.authService.getToken();
+    const options = {
+      headers: new HttpHeaders({ Authorization: `Bearer ${this.authToken}` }),
+    };
 
+    return this.http
+      .delete<any>(`${uri}/admin/delete/user/${id}`, options)
+      .pipe(
+        tap((res) => {
+          // console.log(res);
+        }),
+        catchError((err) => {
+          this.handleError;
+          return throwError(() => {
+            return err;
+          });
+        })
+      );
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -57,21 +87,4 @@ export class UsersService {
       () => new Error('Something bad happened; please try again later.')
     );
   }
-}
-
-
-{
-  "id": "cl4cpoou604980jr2ah9xh57t",
-  "email": "preyeopudu@gmail.com",
-  "password": "$argon2i$v=19$m=4096,t=3,p=1$XFBJNoS+s36AxwIyY28AdA$PlhxaeFgjWG0XtxVCQ0NVAqCYDkusf9UBHiHaO+Z0Eg",
-  "firstName": "preye",
-  "lastName": "opudu",
-  "mobile": "wwwww",
-  "profilePic": "preyeopudu@gmail.com_profileImage-1bde.jpg",
-  "profilePicUrl": "http://seedvendue-server.captain-oracle.routechnology.tech/users/preyeopudu@gmail.com_profileImage-1bde.jpg",
-  "address": "lagos",
-  "stripeId": "cus_LrwG8VDoi6cjIQ",
-  "role": "user",
-  "createdAt": "2022-06-13T12:28:31.804Z",
-  "updatedAt": "2022-06-17T19:14:58.770Z"
 }

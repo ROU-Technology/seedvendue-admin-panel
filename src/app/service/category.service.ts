@@ -7,6 +7,8 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, of, tap, throwError } from 'rxjs';
 import { uri } from '../constants/backend';
 import {
+  CreateCategory,
+  CreateSubCategory,
   ReceivedCategory,
   ReceivedSubCategory,
 } from '../shared/category.interface';
@@ -19,7 +21,13 @@ export class CategoryService {
   authToken: any;
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  getCategories(): Observable<ReceivedCategory[]> {
+  getCategories(
+    query: string,
+    cursorId: string | boolean
+  ): Observable<ReceivedCategory[]> {
+    if (!cursorId) {
+      (query = 'first'), (cursorId = '');
+    }
     // add authorization header with jwt token
     this.authToken = this.authService.getToken();
     const options = {
@@ -27,7 +35,10 @@ export class CategoryService {
     };
     // console.log(this.authToken);
     return this.http
-      .get<ReceivedCategory[]>(`${uri}/admin/category`, options)
+      .get<ReceivedCategory[]>(
+        `${uri}/admin/category?query=${query}&cursorId=${cursorId}`,
+        options
+      )
       .pipe(
         tap((res) => {
           // console.log(res);
@@ -41,7 +52,58 @@ export class CategoryService {
       );
   }
 
-  getSubCategories(): Observable<ReceivedSubCategory[]> {
+  delete(id: string, route: string) {
+    this.authToken = this.authService.getToken();
+
+    // console.log('service', categoryId);
+
+    const options = {
+      headers: new HttpHeaders({ Authorization: `Bearer ${this.authToken}` }),
+    };
+
+    return this.http.delete(`${uri}/admin/${route}/${id}`, options).pipe(
+      tap((res) => {
+        console.log(res);
+      }),
+      catchError((err) => {
+        this.handleError;
+        return throwError(() => {
+          return err.error;
+        });
+      })
+    );
+  }
+
+  create(
+    data: CreateCategory | CreateSubCategory,
+    route: string
+  ): Observable<any> {
+    this.authToken = this.authService.getToken();
+
+    const options = {
+      headers: new HttpHeaders({ Authorization: `Bearer ${this.authToken}` }),
+    };
+
+    return this.http.post<any>(`${uri}/admin/${route}`, data, options).pipe(
+      tap((res) => {
+        // console.log(res);
+      }),
+      catchError((err) => {
+        this.handleError;
+        return throwError(() => {
+          return err.error;
+        });
+      })
+    );
+  }
+
+  getSubCategories(
+    query: string,
+    cursorId: string | boolean
+  ): Observable<ReceivedSubCategory[]> {
+    if (!cursorId) {
+      (query = 'first'), (cursorId = '');
+    }
     // add authorization header with jwt token
     this.authToken = this.authService.getToken();
     const options = {
@@ -49,10 +111,13 @@ export class CategoryService {
     };
     // console.log(this.authToken);
     return this.http
-      .get<ReceivedSubCategory[]>(`${uri}/product/subcategory/all`, options)
+      .get<ReceivedSubCategory[]>(
+        `${uri}/product/subcategory/all?query=${query}&cursorId=${cursorId}`,
+        options
+      )
       .pipe(
         tap((res) => {
-          // console.log(res);
+          console.log(res);
         }),
         catchError((err) => {
           this.handleError;

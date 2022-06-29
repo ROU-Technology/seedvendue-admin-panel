@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { PaymentService } from 'src/app/service';
 
 @Component({
   selector: 'app-withdraw',
   templateUrl: './withdraw.component.html',
-  styleUrls: ['./withdraw.component.scss']
+  styleUrls: ['./withdraw.component.scss'],
 })
-export class WithdrawComponent implements OnInit {
+export class WithdrawComponent implements OnInit, AfterViewInit {
+  isEmpty: boolean = true;
+  withdraws!: any[];
 
-  constructor() { }
+  constructor(private service: PaymentService) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    this.service.getWithdraw('first', false).subscribe((res) => {
+      this.withdraws = res as any;
+    });
   }
 
+  ngOnInit(): void {}
 }

@@ -4,10 +4,10 @@ export const navigation = [
   {
     name: 'Main',
     navigation: [
-      {
-        name: 'Dashboard',
-        url: `/${RoutePath.Home}`,
-      },
+      // {
+      //   name: 'Dashboard',
+      //   url: `/${RoutePath.Home}`,
+      // },
       {
         name: 'Users',
         url: `/${RoutePath.users}`,
@@ -29,10 +29,10 @@ export const navigation = [
         name: 'Payment',
         url: `/${RoutePath.payment}`,
       },
-      {
-        name: 'Payment History',
-        url: `/${RoutePath.paymentHistory}`,
-      },
+      // {
+      //   name: 'Payment History',
+      //   url: `/${RoutePath.paymentHistory}`,
+      // },
       {
         name: 'Withdraw Request',
         url: `/${RoutePath.withdraw}`,

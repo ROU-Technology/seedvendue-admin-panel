@@ -15,7 +15,7 @@ import {
 
 const routes: Routes = [
   { path: R.Login, component: LoginComponent },
-  { path: R.Home, component: HomeComponent, canActivate: [AuthGuard] },
+  { path: R.users, component: UsersComponent, canActivate: [AuthGuard] },
   { path: R.category, component: CategoryComponent, canActivate: [AuthGuard] },
   { path: R.payment, component: PaymentComponent, canActivate: [AuthGuard] },
   { path: R.users, component: UsersComponent, canActivate: [AuthGuard] },
@@ -25,12 +25,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: R.withdraw, component: WithdrawComponent, canActivate: [AuthGuard] },
-  {
-    path: R.paymentHistory,
-    component: PaymentHistoryComponent,
-    canActivate: [AuthGuard],
-  },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  // {
+  //   path: R.paymentHistory,
+  //   component: PaymentHistoryComponent,
+  //   canActivate: [AuthGuard],
+  // },
+  { path: '', redirectTo: R.users, pathMatch: 'full' },
 ];
 
 @NgModule({

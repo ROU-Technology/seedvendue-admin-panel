@@ -2,5 +2,61 @@
   <div class="side_nav col-span-2 min-vh-100">
     <app-side-navigation></app-side-navigation>
   </div>
-  <div class="col-span-10"></div>
+  <div class="col-span-10">
+    <div class="flex flex-col mt-20 items-center">
+      <div class="box w-3/4 bg-white min-h-300 px-4 mb-10">
+        <div class="flex flex-col gap-2 items-start px-2">
+          <p class="text-uppercase text-off-white font-medium mt-2">
+            All Payment
+          </p>
+          <!-- <div class="flex flex-row justify-between items-center w-full">
+            <p class="text-capitalize text-black font-normal mt-2">search</p>
+            <input
+              type="text"
+              class="h-9 w-1/2 border-1 border-solid border-off-white rounded-xl indent-4"
+              placeholder="Search ...."
+              [(ngModel)]="search"
+              (ngModelChange)="filter($event)"
+            />
+            <button
+              class="rounded-3xl h-9 bg-tomato text-white text-sm font-normal text-uppercase px-2 py-1"
+              (click)="createpayment()"
+            >
+              Create new
+            </button>
+          </div> -->
+        </div>
+        <div class="overflow-y-scroll max-h-96">
+          <table class="table-auto table mb-0 mt-5">
+            <thead class="text-off-black font-medium text-lg capitalize">
+              <tr>
+                <th>Id</th>
+                <th>Amount</th>
+                <th>User</th>
+                <th>Product</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let payment of payments"
+                class="last:pb-0 last:border-none"
+              >
+                <td class="py-4">
+                  {{ payment.id }}
+                </td>
+                <td class="py-4">{{ payment.amount }}</td>
+                <td class="py-4">{{ payment.user.firstName }}</td>
+                <td class="py-4">{{ payment.product.productName }}</td>
+              </tr>
+            </tbody>
+            <tr *ngIf="isEmpty">
+              <td colspan="4" class="text-center">
+                <p class="text-black font-medium">No data</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
