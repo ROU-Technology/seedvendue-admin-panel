@@ -25,17 +25,19 @@ export class PaymentService {
       headers: new HttpHeaders({ Authorization: `Bearer ${this.authToken}` }),
     };
 
-    return this.http.get<any[]>(`${uri}/admin/disbursements`, options).pipe(
-      tap((res) => {
-        console.log(res);
-      }),
-      catchError((err) => {
-        this.handleError;
-        return throwError(() => {
-          return err.error;
-        });
-      })
-    );
+    return this.http
+      .get<any[]>(`${uri}/admin/total/disbursement`, options)
+      .pipe(
+        tap((res) => {
+          console.log(res);
+        }),
+        catchError((err) => {
+          this.handleError;
+          return throwError(() => {
+            return err.error;
+          });
+        })
+      );
   }
 
   getWithdraw(query: string, cursorId: string | boolean): Observable<any[]> {
@@ -48,17 +50,19 @@ export class PaymentService {
       headers: new HttpHeaders({ Authorization: `Bearer ${this.authToken}` }),
     };
 
-    return this.http.get<any[]>(`${uri}/admin/withdraw`, options).pipe(
-      tap((res) => {
-        console.log(res);
-      }),
-      catchError((err) => {
-        this.handleError;
-        return throwError(() => {
-          return err.error;
-        });
-      })
-    );
+    return this.http
+      .get<any[]>(`${uri}/admin/total/disbursement`, options)
+      .pipe(
+        tap((res) => {
+          console.log(res);
+        }),
+        catchError((err) => {
+          this.handleError;
+          return throwError(() => {
+            return err.error;
+          });
+        })
+      );
   }
 
   private handleError(error: HttpErrorResponse) {

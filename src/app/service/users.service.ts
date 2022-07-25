@@ -31,10 +31,7 @@ export class UsersService {
     };
 
     return this.http
-      .get<ReceivedUsers[]>(
-        `${uri}/admin/users?query=${query}&cursorId=${cursorId}`,
-        options
-      )
+      .get<ReceivedUsers[]>(`${uri}/admin/total/user`, options)
       .pipe(
         tap((res) => {
           // console.log(res);

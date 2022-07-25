@@ -35,10 +35,7 @@ export class CategoryService {
     };
     // console.log(this.authToken);
     return this.http
-      .get<ReceivedCategory[]>(
-        `${uri}/admin/category?query=${query}&cursorId=${cursorId}`,
-        options
-      )
+      .get<ReceivedCategory[]>(`${uri}/admin/total/category`, options)
       .pipe(
         tap((res) => {
           // console.log(res);
@@ -111,10 +108,7 @@ export class CategoryService {
     };
     // console.log(this.authToken);
     return this.http
-      .get<ReceivedSubCategory[]>(
-        `${uri}/product/subcategory/all?query=${query}&cursorId=${cursorId}`,
-        options
-      )
+      .get<ReceivedSubCategory[]>(`${uri}/admin/total/subCategory`, options)
       .pipe(
         tap((res) => {
           console.log(res);
